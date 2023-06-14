@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.BusinessLogic;
 using PsychoMedikAPI.Data;
@@ -28,11 +23,15 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HistoriaChorobyForView>>> GetHistoriaChoroby()
         {
-          if (_context.HistoriaChoroby == null)
-          {
-              return NotFound();
-          }
-            return (await _context.HistoriaChoroby.ToListAsync())
+            if (_context.HistoriaChoroby == null)
+            {
+                return NotFound();
+            }
+            return (await _context.HistoriaChoroby
+                .Include(historiaChoroby => historiaChoroby.Pracownik)
+                .Include(historiaChoroby => historiaChoroby.Pacjent)
+                .Include(historiaChoroby => historiaChoroby.Choroba)
+                .ToListAsync())
                 .Select(historiaChoroby => ConvertB.ConvertHistoriaChorobyToHistoriaChorobyForView(historiaChoroby))
                 .ToList();
         }
@@ -41,10 +40,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HistoriaChorobyForView>> GetHistoriaChoroby(int id)
         {
-          if (_context.HistoriaChoroby == null)
-          {
-              return NotFound();
-          }
+            if (_context.HistoriaChoroby == null)
+            {
+                return NotFound();
+            }
             var historiaChoroby = await _context.HistoriaChoroby.FindAsync(id);
 
             if (historiaChoroby == null)
@@ -64,9 +63,7 @@ namespace PsychoMedikAPI.Controllers
             {
                 return BadRequest();
             }
-
             _context.Entry(historiaChoroby).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -91,10 +88,18 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<HistoriaChorobyForView>> PostHistoriaChoroby(HistoriaChorobyForView historiaChoroby)
         {
-          if (_context.HistoriaChoroby == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.HistoriaChoroby'  is null.");
-          }
+            if (_context.HistoriaChoroby == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.HistoriaChoroby'  is null.");
+            }
+            try
+            {
+                await HistoriaChorobyB.WalidujIWypelnijHistorie(historiaChoroby, _context);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
             var historiaChorobyToAdd = new HistoriaChoroby().CopyProperties(historiaChoroby);
             _context.HistoriaChoroby.Add(historiaChorobyToAdd);
             await _context.SaveChangesAsync();
