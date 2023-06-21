@@ -9,9 +9,9 @@ namespace PsychoMedikAPI.Models
         public int? IdPracownika { get; set; }
         [ForeignKey("IdPracownika")]
         public virtual Pracownik? Pracownik{ get; set; }
-        public int DzienRoku { get; set; }
-        public int GodzinaRozpoczecia { get; set; }
-        public int GodzinaZakonczenia { get; set; }
+        public DateTime? DataPracy { get; set; }
+        public int? GodzinaRozpoczecia { get; set; }
+        public int? GodzinaZakonczenia { get; set; }
 
     }
 }

@@ -11,14 +11,15 @@ namespace PsychoMedikAPI.BusinessLogic
             return new PracownikForView
             {
                 NazwaStanowisko = pracownik?.Stanowisko?.Nazwa ?? string.Empty,
+                ImieNazwisko = pracownik?.Imie + " " + pracownik.Nazwisko ?? string.Empty,
             }.CopyProperties(pracownik);
         }
         public static HistoriaChorobyForView ConvertHistoriaChorobyToHistoriaChorobyForView(HistoriaChoroby historiaChoroby)
         {
             return new HistoriaChorobyForView
             {
-                ImieNazwiskoPracownika = historiaChoroby?.Pracownik?.Imie + historiaChoroby?.Pracownik?.Nazwisko ?? string.Empty,
-                ImieNazwiskoPacjenta = historiaChoroby?.Pacjent?.Imie + historiaChoroby?.Pacjent?.Nazwisko ?? string.Empty,
+                ImieNazwiskoPracownika = historiaChoroby?.Pracownik?.Imie + " " + historiaChoroby?.Pracownik?.Nazwisko ?? string.Empty,
+                ImieNazwiskoPacjenta = historiaChoroby?.Pacjent?.Imie + " " + historiaChoroby?.Pacjent?.Nazwisko ?? string.Empty,
                 NazwaChoroby = historiaChoroby?.Choroba?.Nazwa ?? string.Empty
             }.CopyProperties(historiaChoroby);
         }
@@ -26,7 +27,7 @@ namespace PsychoMedikAPI.BusinessLogic
         {
             return new HarmonogramForView
             {
-                ImieNazwiskoPracownika = harmonogram?.Pracownik?.Imie + harmonogram?.Pracownik?.Nazwisko ?? string.Empty
+                ImieNazwiskoPracownika = harmonogram?.Pracownik?.Imie + " " + harmonogram?.Pracownik?.Nazwisko ?? string.Empty
             }.CopyProperties(harmonogram);
         }
         public static PacjentForView ConvertPacjentToPacjentForView(Pacjent pacjent)

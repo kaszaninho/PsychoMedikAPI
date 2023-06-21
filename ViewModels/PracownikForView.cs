@@ -7,6 +7,7 @@ namespace PsychoMedikAPI.ViewModels
     {
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
+        public string ImieNazwisko { get; set; }
         public DateTime DataUrodzenia { get; set; }
         public DateTime DataZatrudnienia { get; set; }
         public DateTime? DataRezygnacji { get; set; }

@@ -34,6 +34,7 @@ namespace PsychoMedikAPI.Controllers
           }
             return (await _context
                 .Harmonogram
+                .Include(item => item.Pracownik)
                 .ToListAsync())
                 .Select(harmonogram => ConvertB.ConvertHarmonogramToHarmonogramForView(harmonogram))
                 .ToList();
