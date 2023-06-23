@@ -10,8 +10,8 @@ namespace PsychoMedikAPI.BusinessLogic
         {
             return new PracownikForView
             {
-                NazwaStanowisko = pracownik?.Stanowisko?.Nazwa ?? string.Empty,
-                ImieNazwisko = pracownik?.Imie + " " + pracownik.Nazwisko ?? string.Empty,
+                NazwaStanowisko = pracownik.Stanowisko.Nazwa,
+                ImieNazwisko = pracownik?.Imie + " " + pracownik?.Nazwisko ?? string.Empty,
             }.CopyProperties(pracownik);
         }
         public static HistoriaChorobyForView ConvertHistoriaChorobyToHistoriaChorobyForView(HistoriaChoroby historiaChoroby)
@@ -34,7 +34,7 @@ namespace PsychoMedikAPI.BusinessLogic
         {
             return new PacjentForView
             {
-                ImieNazwiskoPracownikaProwadzacego = pacjent?.Pracownik?.Imie + pacjent?.Pracownik?.Nazwisko ?? string.Empty
+                ImieNazwisko = pacjent?.Pracownik?.Imie + " " + pacjent?.Pracownik?.Nazwisko ?? string.Empty
             }.CopyProperties(pacjent);
         }
         public static WizytaForView ConvertWizytaToWizytaForView(Wizyta wizyta)

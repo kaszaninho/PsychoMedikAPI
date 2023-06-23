@@ -55,7 +55,7 @@ namespace PsychoMedikAPI.Controllers
                 return NotFound();
             }
 
-            return ConvertB.ConvertHarmonogramToHarmonogramForView(harmonogram);
+            return Ok(harmonogram);
         }
 
         // PUT: api/Harmonogram/5

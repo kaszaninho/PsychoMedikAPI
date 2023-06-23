@@ -32,7 +32,10 @@ namespace PsychoMedikAPI.Controllers
           {
               return NotFound();
           }
-            return (await _context.Pacjent.ToListAsync())
+            return (await _context
+                .Pacjent
+                .Include(pacjent => pacjent.Pracownik)
+                .ToListAsync())
                 .Select(pacjent => ConvertB.ConvertPacjentToPacjentForView(pacjent))
                 .ToList();
         }
@@ -52,7 +55,7 @@ namespace PsychoMedikAPI.Controllers
                 return NotFound();
             }
 
-            return ConvertB.ConvertPacjentToPacjentForView(pacjent);
+            return Ok(pacjent);
         }
 
         // PUT: api/Pacjent/5

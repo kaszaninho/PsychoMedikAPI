@@ -9,8 +9,8 @@ namespace PsychoMedikAPI.ViewModels
         public string Nazwisko { get; set; }
         public DateTime? DataUrodzenia { get; set; }
         public bool Plec { get; set; }
-        public int? IdPracownikaProwadzacego { get; set; }
-        public string ImieNazwiskoPracownikaProwadzacego { get; set; }
+        public int? IdPracownika { get; set; }
+        public string ImieNazwisko { get; set; }
 
     }
 }

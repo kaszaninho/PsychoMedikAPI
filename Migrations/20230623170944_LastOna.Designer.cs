@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PsychoMedikAPI.Data;
 
@@ -11,9 +12,10 @@ using PsychoMedikAPI.Data;
 namespace PsychoMedikAPI.Migrations
 {
     [DbContext(typeof(PsychoMedikAPIContext))]
-    partial class PsychoMedikAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20230623170944_LastOna")]
+    partial class LastOna
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("ObjawyId");
 
-                    b.ToTable("ChorobaObjaw", (string)null);
+                    b.ToTable("ChorobaObjaw");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Choroba", b =>
@@ -64,7 +66,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Choroba", (string)null);
+                    b.ToTable("Choroba");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Harmonogram", b =>
@@ -100,7 +102,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("IdPracownika");
 
-                    b.ToTable("Harmonogram", (string)null);
+                    b.ToTable("Harmonogram");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.HistoriaChoroby", b =>
@@ -147,7 +149,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("IdPracownika");
 
-                    b.ToTable("HistoriaChoroby", (string)null);
+                    b.ToTable("HistoriaChoroby");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Objaw", b =>
@@ -177,7 +179,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Objaw", (string)null);
+                    b.ToTable("Objaw");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Pacjent", b =>
@@ -222,7 +224,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("IdPracownika");
 
-                    b.ToTable("Pacjent", (string)null);
+                    b.ToTable("Pacjent");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Pokoj", b =>
@@ -252,7 +254,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pokoj", (string)null);
+                    b.ToTable("Pokoj");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Pracownik", b =>
@@ -307,7 +309,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("IdStanowiska");
 
-                    b.ToTable("Pracownik", (string)null);
+                    b.ToTable("Pracownik");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Stanowisko", b =>
@@ -337,7 +339,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stanowisko", (string)null);
+                    b.ToTable("Stanowisko");
                 });
 
             modelBuilder.Entity("PsychoMedikAPI.Models.Wizyta", b =>
@@ -381,7 +383,7 @@ namespace PsychoMedikAPI.Migrations
 
                     b.HasIndex("IdPracownika");
 
-                    b.ToTable("Wizyta", (string)null);
+                    b.ToTable("Wizyta");
                 });
 
             modelBuilder.Entity("ChorobaObjaw", b =>

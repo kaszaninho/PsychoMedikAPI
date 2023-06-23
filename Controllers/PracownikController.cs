@@ -34,6 +34,7 @@ namespace PsychoMedikAPI.Controllers
           }
             return (await _context
                 .Pracownik
+                .Include(pracownik => pracownik.Stanowisko)
                 .ToListAsync())
                 .Select(pracownik => ConvertB.ConvertPracownikToPracownikForView(pracownik))
                 .ToList();
