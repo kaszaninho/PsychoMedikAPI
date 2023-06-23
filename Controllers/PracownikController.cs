@@ -48,7 +48,9 @@ namespace PsychoMedikAPI.Controllers
           {
               return NotFound();
           }
-            var pracownik = await _context.Pracownik.FindAsync(id);
+            var pracownik = await _context.Pracownik
+                .Include(pracownik => pracownik.Stanowisko)
+                .FirstAsync(pracownik => pracownik.Id == id);
 
             if (pracownik == null)
             {

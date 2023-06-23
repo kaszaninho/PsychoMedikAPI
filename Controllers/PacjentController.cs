@@ -48,14 +48,16 @@ namespace PsychoMedikAPI.Controllers
           {
               return NotFound();
           }
-            var pacjent = await _context.Pacjent.FindAsync(id);
+            var pacjent = await _context.Pacjent
+                .Include(pacjent => pacjent.Pracownik)
+                .FirstAsync(pacjent => pacjent.Id == id);
 
             if (pacjent == null)
             {
                 return NotFound();
             }
 
-            return Ok(pacjent);
+            return ConvertB.ConvertPacjentToPacjentForView(pacjent);
         }
 
         // PUT: api/Pacjent/5

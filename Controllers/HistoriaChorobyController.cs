@@ -44,7 +44,11 @@ namespace PsychoMedikAPI.Controllers
             {
                 return NotFound();
             }
-            var historiaChoroby = await _context.HistoriaChoroby.FindAsync(id);
+            var historiaChoroby = await _context.HistoriaChoroby
+                .Include(historiaChoroby => historiaChoroby.Pracownik)
+                .Include(historiaChoroby => historiaChoroby.Pacjent)
+                .Include(historiaChoroby => historiaChoroby.Choroba).
+                FirstAsync(historiaChoroby => historiaChoroby.Id == id);
 
             if (historiaChoroby == null)
             {

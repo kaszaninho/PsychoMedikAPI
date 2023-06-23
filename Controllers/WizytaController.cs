@@ -49,7 +49,11 @@ namespace PsychoMedikAPI.Controllers
             {
                 return NotFound();
             }
-            var wizyta = await _context.Wizyta.FindAsync(id);
+            var wizyta = await _context.Wizyta
+                .Include(wizyta => wizyta.Pacjent)
+                .Include(wizyta => wizyta.Pracownik)
+                .Include(wizyta => wizyta.Pokoj)
+                .FirstAsync(wizyta => wizyta.Id == id);
 
             if (wizyta == null)
             {

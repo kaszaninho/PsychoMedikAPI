@@ -27,6 +27,7 @@ namespace PsychoMedikAPI.BusinessLogic
         {
             return new HarmonogramForView
             {
+                DataPracy = harmonogram?.DataPracy.Value.Date,
                 ImieNazwiskoPracownika = harmonogram?.Pracownik?.Imie + " " + harmonogram?.Pracownik?.Nazwisko ?? string.Empty
             }.CopyProperties(harmonogram);
         }

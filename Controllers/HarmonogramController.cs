@@ -48,14 +48,16 @@ namespace PsychoMedikAPI.Controllers
           {
               return NotFound();
           }
-            var harmonogram = await _context.Harmonogram.FindAsync(id);
+            var harmonogram = await _context.Harmonogram
+                .Include(harmonogram => harmonogram.Pracownik)
+                .FirstAsync(harmonogram => harmonogram.Id == id);
 
             if (harmonogram == null)
             {
                 return NotFound();
             }
 
-            return Ok(harmonogram);
+            return ConvertB.ConvertHarmonogramToHarmonogramForView(harmonogram);
         }
 
         // PUT: api/Harmonogram/5
