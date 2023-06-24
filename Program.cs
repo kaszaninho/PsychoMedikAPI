@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using PsychoMedikAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PsychoMedikAPIContext>(options =>

@@ -1,5 +1,4 @@
 ﻿using PsychoMedikAPI.Models.Abstract;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PsychoMedikAPI.ViewModels
 {
@@ -10,6 +9,5 @@ namespace PsychoMedikAPI.ViewModels
         public DateTime? DataPracy { get; set; }
         public int? GodzinaRozpoczecia { get; set; }
         public int? GodzinaZakonczenia { get; set; }
-
     }
 }

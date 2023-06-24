@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.BusinessLogic;
 using PsychoMedikAPI.Data;
@@ -28,10 +23,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HarmonogramForView>>> GetHarmonogram()
         {
-          if (_context.Harmonogram == null)
-          {
-              return NotFound();
-          }
+            if (_context.Harmonogram == null)
+            {
+                return NotFound();
+            }
             return (await _context
                 .Harmonogram
                 .Include(item => item.Pracownik)
@@ -44,10 +39,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HarmonogramForView>> GetHarmonogram(int id)
         {
-          if (_context.Harmonogram == null)
-          {
-              return NotFound();
-          }
+            if (_context.Harmonogram == null)
+            {
+                return NotFound();
+            }
             var harmonogram = await _context.Harmonogram
                 .Include(harmonogram => harmonogram.Pracownik)
                 .FirstAsync(harmonogram => harmonogram.Id == id);
@@ -96,10 +91,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<HarmonogramForView>> PostHarmonogram(HarmonogramForView harmonogram)
         {
-          if (_context.Harmonogram == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Harmonogram'  is null.");
-          }
+            if (_context.Harmonogram == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Harmonogram'  is null.");
+            }
             var harmonogramToAdd = new Harmonogram().CopyProperties(harmonogram);
             _context.Harmonogram.Add(harmonogramToAdd);
             await _context.SaveChangesAsync();

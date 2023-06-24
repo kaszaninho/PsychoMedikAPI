@@ -1,5 +1,4 @@
 ﻿using PsychoMedikAPI.Models.Abstract;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PsychoMedikAPI.ViewModels
 {

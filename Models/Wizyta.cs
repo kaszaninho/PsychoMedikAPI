@@ -5,7 +5,6 @@ namespace PsychoMedikAPI.Models
 {
     public class Wizyta : DescriptionTable
     {
-        // dzien, opacjent, lekarz,(godzina rozpoczecia?)
         public DateTime? DataWizyty { get; set; }
         public int? IdPacjenta { get; set; }
         [ForeignKey("IdPacjenta")]

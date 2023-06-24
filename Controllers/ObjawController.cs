@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.Data;
 using PsychoMedikAPI.Models;
@@ -25,10 +20,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Objaw>>> GetObjaw()
         {
-          if (_context.Objaw == null)
-          {
-              return NotFound();
-          }
+            if (_context.Objaw == null)
+            {
+                return NotFound();
+            }
             return await _context.Objaw.ToListAsync();
         }
 
@@ -36,10 +31,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Objaw>> GetObjaw(int id)
         {
-          if (_context.Objaw == null)
-          {
-              return NotFound();
-          }
+            if (_context.Objaw == null)
+            {
+                return NotFound();
+            }
             var objaw = await _context.Objaw.FindAsync(id);
 
             if (objaw == null)
@@ -86,10 +81,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Objaw>> PostObjaw(Objaw objaw)
         {
-          if (_context.Objaw == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Objaw'  is null.");
-          }
+            if (_context.Objaw == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Objaw'  is null.");
+            }
             _context.Objaw.Add(objaw);
             await _context.SaveChangesAsync();
 

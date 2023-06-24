@@ -12,7 +12,6 @@ namespace PsychoMedikAPI.Models
         public int? IdPracownika { get; set; }
         [ForeignKey("IdPracownika")]
         public virtual Pracownik? Pracownik { get; set; }
-        public ICollection<HistoriaChoroby>? HistoriaChoroby{ get; set; }
-
+        public ICollection<HistoriaChoroby>? HistoriaChoroby { get; set; }
     }
 }

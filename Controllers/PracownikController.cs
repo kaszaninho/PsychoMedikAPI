@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.BusinessLogic;
 using PsychoMedikAPI.Data;
@@ -28,10 +23,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PracownikForView>>> GetPracownik()
         {
-          if (_context.Pracownik == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pracownik == null)
+            {
+                return NotFound();
+            }
             return (await _context
                 .Pracownik
                 .Include(pracownik => pracownik.Stanowisko)
@@ -44,10 +39,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PracownikForView>> GetPracownik(int id)
         {
-          if (_context.Pracownik == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pracownik == null)
+            {
+                return NotFound();
+            }
             var pracownik = await _context.Pracownik
                 .Include(pracownik => pracownik.Stanowisko)
                 .FirstAsync(pracownik => pracownik.Id == id);
@@ -96,10 +91,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<PracownikForView>> PostPracownik(PracownikForView pracownik)
         {
-          if (_context.Pracownik == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Pracownik'  is null.");
-          }
+            if (_context.Pracownik == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Pracownik'  is null.");
+            }
             var pracownikToAdd = new Pracownik().CopyProperties(pracownik);
             _context.Pracownik.Add(pracownikToAdd);
             await _context.SaveChangesAsync();

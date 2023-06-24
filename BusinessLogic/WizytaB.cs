@@ -7,15 +7,15 @@ namespace PsychoMedikAPI.BusinessLogic
     {
         public static async Task WalidujIWypelnijWizyte(WizytaForView wizyta, PsychoMedikAPIContext context)
         {
-            if(context.Pracownik == null)
+            if (context.Pracownik == null)
             {
                 throw new Exception("Entity set 'PsychoMedikAPIContext.Pracownik'  is null.");
             }
-            if(context.Pacjent == null)
+            if (context.Pacjent == null)
             {
                 throw new Exception("Entity set 'PsychoMedikAPIContext.Pacjent'  is null.");
             }
-            if(string.IsNullOrEmpty(wizyta.ImieNazwiskoPracownika))
+            if (string.IsNullOrEmpty(wizyta.ImieNazwiskoPracownika))
             {
                 var pracownik = await context.Pracownik.FindAsync(wizyta.IdPracownika);
                 if (pracownik == null)
@@ -24,7 +24,7 @@ namespace PsychoMedikAPI.BusinessLogic
                 }
                 wizyta.ImieNazwiskoPracownika = pracownik.Imie + " " + pracownik.Nazwisko;
             }
-            if(string.IsNullOrEmpty(wizyta.ImieNazwiskoPacjenta)) 
+            if (string.IsNullOrEmpty(wizyta.ImieNazwiskoPacjenta))
             {
                 var pacjent = await context.Pacjent.FindAsync(wizyta.IdPacjenta);
                 if (pacjent == null)
@@ -33,7 +33,7 @@ namespace PsychoMedikAPI.BusinessLogic
                 }
                 wizyta.ImieNazwiskoPacjenta = pacjent.Imie + " " + pacjent.Nazwisko;
             }
-            
+
         }
     }
 }

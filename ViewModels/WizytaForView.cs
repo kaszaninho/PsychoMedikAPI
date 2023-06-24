@@ -1,8 +1,6 @@
-﻿using PsychoMedikAPI.BusinessLogic;
-using PsychoMedikAPI.Models;
+﻿using PsychoMedikAPI.Models;
 using PsychoMedikAPI.Models.Abstract;
 using PsychoMedikApp.Helpers;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PsychoMedikAPI.ViewModels
 {
@@ -22,14 +20,14 @@ namespace PsychoMedikAPI.ViewModels
             var result = new Wizyta().CopyProperties(wizytaForView);
             return result;
         }
-        public static implicit operator WizytaForView(Wizyta wizyta) 
+        public static implicit operator WizytaForView(Wizyta wizyta)
         {
             var result = new WizytaForView().CopyProperties(wizyta);
-            if(wizyta.Pracownik != null)
+            if (wizyta.Pracownik != null)
             {
                 result.ImieNazwiskoPracownika = wizyta.Pracownik.Imie + " " + wizyta.Pracownik.Nazwisko;
             }
-            if(wizyta.Pacjent != null)
+            if (wizyta.Pacjent != null)
             {
                 result.ImieNazwiskoPacjenta = wizyta.Pacjent.Imie + " " + wizyta.Pacjent.Nazwisko;
             }

@@ -1,5 +1,4 @@
-﻿using PsychoMedikAPI.Models;
-using PsychoMedikAPI.Models.Abstract;
+﻿using PsychoMedikAPI.Models.Abstract;
 
 namespace PsychoMedikAPI.ViewModels
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.Data;
 using PsychoMedikAPI.Models;
@@ -25,10 +20,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Choroba>>> GetChoroba()
         {
-          if (_context.Choroba == null)
-          {
-              return NotFound();
-          }
+            if (_context.Choroba == null)
+            {
+                return NotFound();
+            }
             return await _context.Choroba.ToListAsync();
         }
 
@@ -36,10 +31,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Choroba>> GetChoroba(int id)
         {
-          if (_context.Choroba == null)
-          {
-              return NotFound();
-          }
+            if (_context.Choroba == null)
+            {
+                return NotFound();
+            }
             var choroba = await _context.Choroba.FindAsync(id);
 
             if (choroba == null)
@@ -86,10 +81,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Choroba>> PostChoroba(Choroba choroba)
         {
-          if (_context.Choroba == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Choroba'  is null.");
-          }
+            if (_context.Choroba == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Choroba'  is null.");
+            }
             _context.Choroba.Add(choroba);
             await _context.SaveChangesAsync();
 

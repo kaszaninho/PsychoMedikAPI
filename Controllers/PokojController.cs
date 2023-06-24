@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.Data;
 using PsychoMedikAPI.Models;
@@ -25,10 +20,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pokoj>>> GetPokoj()
         {
-          if (_context.Pokoj == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pokoj == null)
+            {
+                return NotFound();
+            }
             return await _context.Pokoj.ToListAsync();
         }
 
@@ -36,10 +31,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Pokoj>> GetPokoj(int id)
         {
-          if (_context.Pokoj == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pokoj == null)
+            {
+                return NotFound();
+            }
             var pokoj = await _context.Pokoj.FindAsync(id);
 
             if (pokoj == null)
@@ -86,10 +81,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Pokoj>> PostPokoj(Pokoj pokoj)
         {
-          if (_context.Pokoj == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Pokoj'  is null.");
-          }
+            if (_context.Pokoj == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Pokoj'  is null.");
+            }
             _context.Pokoj.Add(pokoj);
             await _context.SaveChangesAsync();
 

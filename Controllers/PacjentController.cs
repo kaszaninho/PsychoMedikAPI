@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.BusinessLogic;
 using PsychoMedikAPI.Data;
@@ -28,10 +23,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PacjentForView>>> GetPacjent()
         {
-          if (_context.Pacjent == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pacjent == null)
+            {
+                return NotFound();
+            }
             return (await _context
                 .Pacjent
                 .Include(pacjent => pacjent.Pracownik)
@@ -44,10 +39,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PacjentForView>> GetPacjent(int id)
         {
-          if (_context.Pacjent == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pacjent == null)
+            {
+                return NotFound();
+            }
             var pacjent = await _context.Pacjent
                 .Include(pacjent => pacjent.Pracownik)
                 .FirstAsync(pacjent => pacjent.Id == id);
@@ -96,10 +91,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<PacjentForView>> PostPacjent(PacjentForView pacjent)
         {
-          if (_context.Pacjent == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Pacjent'  is null.");
-          }
+            if (_context.Pacjent == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Pacjent'  is null.");
+            }
             var pacjentToAdd = new Pacjent().CopyProperties(pacjent);
             _context.Pacjent.Add(pacjentToAdd);
             await _context.SaveChangesAsync();

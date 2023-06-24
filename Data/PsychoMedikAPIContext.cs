@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using PsychoMedikAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace PsychoMedikAPI.Data
 {
     public class PsychoMedikAPIContext : DbContext
     {
-        public PsychoMedikAPIContext (DbContextOptions<PsychoMedikAPIContext> options)
+        public PsychoMedikAPIContext(DbContextOptions<PsychoMedikAPIContext> options)
             : base(options)
         {
         }

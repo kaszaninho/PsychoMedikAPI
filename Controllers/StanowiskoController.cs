@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoMedikAPI.Data;
 using PsychoMedikAPI.Models;
@@ -25,10 +20,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Stanowisko>>> GetStanowisko()
         {
-          if (_context.Stanowisko == null)
-          {
-              return NotFound();
-          }
+            if (_context.Stanowisko == null)
+            {
+                return NotFound();
+            }
             return await _context.Stanowisko.ToListAsync();
         }
 
@@ -36,10 +31,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Stanowisko>> GetStanowisko(int id)
         {
-          if (_context.Stanowisko == null)
-          {
-              return NotFound();
-          }
+            if (_context.Stanowisko == null)
+            {
+                return NotFound();
+            }
             var stanowisko = await _context.Stanowisko.FindAsync(id);
 
             if (stanowisko == null)
@@ -86,10 +81,10 @@ namespace PsychoMedikAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Stanowisko>> PostStanowisko(Stanowisko stanowisko)
         {
-          if (_context.Stanowisko == null)
-          {
-              return Problem("Entity set 'PsychoMedikAPIContext.Stanowisko'  is null.");
-          }
+            if (_context.Stanowisko == null)
+            {
+                return Problem("Entity set 'PsychoMedikAPIContext.Stanowisko'  is null.");
+            }
             _context.Stanowisko.Add(stanowisko);
             await _context.SaveChangesAsync();
 
